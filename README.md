@@ -39,7 +39,7 @@ This is a simple guessing game built using HTML, CSS & Javascript. The player ha
    ```sh
    cd hangman
    ```
-3. Open the index.html file
+3. Open the setup.html file
    ```
 
 ## 🤝 Contributing

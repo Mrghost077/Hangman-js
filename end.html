@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game End</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <canvas id="background-canvas"></canvas> <!-- Canvas for background effects -->
+
+    <div id="end-frame">
+        <h1>Game Over</h1>
+        <div id="message-container"></div>
+        <div id="score-container">
+            <strong>Score:</strong> <span id="final-score"></span>
+        </div>
+        <div id="button-container">
+            <button id="restart-button"><i class="fas fa-redo-alt"></i> Restart Game</button>
+            <button id="main-page-button"><i class="fas fa-home"></i> Main Page</button>
+        </div>
+    </div>
+
+    <script src="canvas-effects.js"></script> <!-- Added script for canvas effects -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const message = localStorage.getItem('endMessage');
+            const score = localStorage.getItem('score');
+            document.getElementById('message-container').innerText = message;
+            document.getElementById('final-score').innerText = score;
+
+            document.getElementById('restart-button').addEventListener('click', function() {
+                window.location.href = 'game.html'; // Navigate to game page
+            });
+
+            document.getElementById('main-page-button').addEventListener('click', function() {
+                window.location.href = 'setup.html'; // Navigate back to setup page
+            });
+        });
+    </script>
+</body>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Hangman Game. Created with ❤️ by Safwan</p>
+</footer>
+
+</html>

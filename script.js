@@ -6,8 +6,9 @@ const wordLists = {
 
 let chosenWord = '';
 let hiddenWord = '';
-let maxAttempts = 6;
+let maxAttempts = 6; // Set max attempts to 6 for all difficulty levels
 let score = 0; // Initialize score
+let gameOver = false; // Flag to indicate if the game is over
 
 const hangmanStages = [
     `
@@ -91,10 +92,6 @@ const wordContainerElem = document.getElementById('word-container');
 const keyboardContainerElem = document.getElementById('keyboard-container');
 const messageElem = document.getElementById('message');
 const scoreElem = document.getElementById('score');
-const startButton = document.getElementById('start-button');
-const difficultySelect = document.getElementById('difficulty');
-
-startButton.addEventListener('click', startGame);
 
 const displayWord = (word) => {
     wordContainerElem.innerHTML = word.split('').join(' ');
@@ -111,15 +108,15 @@ const displayScore = (score) => {
 const createKeyboard = () => {
     keyboardContainerElem.innerHTML = ''; // Clear previous keyboard
     const qwertyRows = [
-        'qwertyuiop',
-        'asdfghjkl',
-        'zxcvbnm'
+        'q w e r t y u i o p',
+        'a s d f g h j k l',
+        'z x c v b n m'
     ];
 
     qwertyRows.forEach(row => {
         const rowElem = document.createElement('div');
         rowElem.classList.add('keyboard-row');
-        row.split('').forEach(letter => {
+        row.split(' ').forEach(letter => {
             const button = document.createElement('button');
             button.classList.add('key');
             button.innerText = letter;
@@ -139,7 +136,7 @@ const disableKey = (letter) => {
 };
 
 const guessLetter = (letter) => {
-    if (guessedLetters.includes(letter)) return;
+    if (gameOver || guessedLetters.includes(letter)) return; // Prevent further input if the game is over or letter already guessed
 
     if (chosenWord.includes(letter)) {
         hangmanContainerElem.style.backgroundColor = 'green';
@@ -160,18 +157,29 @@ const guessLetter = (letter) => {
         attempts++;
         score -= 5; // Decrease score for wrong guess
     }
+
+    // Ensure the score doesn't go negative
+    if (score < 0) {
+        score = 0;
+    }
+
     guessedLetters.push(letter);
     disableKey(letter);
     displayWord(hiddenWord);
     displayHangman(attempts);
     displayScore(score); // Update score display
 
+    // Check if the game is won or lost
     if (!hiddenWord.includes('_')) {
-        messageElem.innerText = 'Congratulations! You guessed the word: ' + chosenWord;
-        disableAllKeys();
+        gameOver = true;
+        localStorage.setItem('endMessage', 'Congratulations! You guessed the word: ' + chosenWord);
+        localStorage.setItem('endStatus', 'win');
+        navigateToEndScreen();
     } else if (attempts >= maxAttempts) {
-        messageElem.innerText = 'Sorry, you ran out of attempts. The word was: ' + chosenWord;
-        disableAllKeys();
+        gameOver = true;
+        localStorage.setItem('endMessage', 'Sorry, you ran out of attempts. The word was: ' + chosenWord);
+        localStorage.setItem('endStatus', 'lose');
+        navigateToEndScreen();
     }
 };
 
@@ -182,27 +190,20 @@ const disableAllKeys = () => {
     });
 };
 
+const navigateToEndScreen = () => {
+    disableAllKeys();
+    localStorage.setItem('score', score); // Save score to local storage
+    window.location.href = 'end.html'; // Navigate to end screen
+};
+
 function startGame() {
-    const difficulty = difficultySelect.value;
+    gameOver = false; // Reset game over flag
+    const difficulty = localStorage.getItem('difficulty'); // Get difficulty from local storage
     const wordList = wordLists[difficulty];
     chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
     hiddenWord = Array(chosenWord.length).fill('_').join('');
     attempts = 0;
     guessedLetters.length = 0;
-
-    switch (difficulty) {
-        case 'easy':
-            maxAttempts = 8;
-            break;
-        case 'medium':
-            maxAttempts = 6;
-            break;
-        case 'hard':
-            maxAttempts = 4;
-            break;
-        default:
-            maxAttempts = 6;
-    }
 
     createKeyboard();
     displayWord(hiddenWord);
@@ -212,4 +213,4 @@ function startGame() {
     displayScore(score); // Initialize score display
 }
 
-startGame();
+document.addEventListener('DOMContentLoaded', startGame);
