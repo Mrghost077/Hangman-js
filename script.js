@@ -1,14 +1,18 @@
-const wordLists = {
-    easy: ['cat', 'dog', 'fish', 'bird', 'tree'],
-    medium: ['javascript', 'hangman', 'program', 'function', 'variable'],
-    hard: ['transcendental', 'phenomenological', 'psychophysiological', 'thermodynamics']
-};
+let wordLists = {};
+
+async function loadWordLists() {
+    const response = await fetch('wordLists.json');
+    wordLists = await response.json();
+    startGame(); 
+}
+
+document.addEventListener('DOMContentLoaded', loadWordLists);;
 
 let chosenWord = '';
 let hiddenWord = '';
-let maxAttempts = 6; // Set max attempts to 6 for all difficulty levels
-let score = 0; // Initialize score
-let gameOver = false; // Flag to indicate if the game is over
+let maxAttempts = 6; 
+let score = 0; 
+let gameOver = false; 
 
 const hangmanStages = [
     `
@@ -106,7 +110,7 @@ const displayScore = (score) => {
 };
 
 const createKeyboard = () => {
-    keyboardContainerElem.innerHTML = ''; // Clear previous keyboard
+    keyboardContainerElem.innerHTML = ''; 
     const qwertyRows = [
         'q w e r t y u i o p',
         'a s d f g h j k l',
@@ -136,7 +140,7 @@ const disableKey = (letter) => {
 };
 
 const guessLetter = (letter) => {
-    if (gameOver || guessedLetters.includes(letter)) return; // Prevent further input if the game is over or letter already guessed
+    if (gameOver || guessedLetters.includes(letter)) return; 
 
     if (chosenWord.includes(letter)) {
         hangmanContainerElem.style.backgroundColor = 'green';
@@ -148,17 +152,17 @@ const guessLetter = (letter) => {
                 hiddenWord = hiddenWord.substring(0, i) + letter + hiddenWord.substring(i + 1);
             }
         }
-        score += 10; // Increase score for correct guess
+        score += 10; 
     } else {
         hangmanContainerElem.style.backgroundColor = 'red';
         setTimeout(() => {
             hangmanContainerElem.style.backgroundColor = 'white';
         }, 500);
         attempts++;
-        score -= 5; // Decrease score for wrong guess
+        score -= 5; 
     }
 
-    // Ensure the score doesn't go negative
+    
     if (score < 0) {
         score = 0;
     }
@@ -167,9 +171,9 @@ const guessLetter = (letter) => {
     disableKey(letter);
     displayWord(hiddenWord);
     displayHangman(attempts);
-    displayScore(score); // Update score display
+    displayScore(score); 
 
-    // Check if the game is won or lost
+    
     if (!hiddenWord.includes('_')) {
         gameOver = true;
         localStorage.setItem('endMessage', 'Congratulations! You guessed the word: ' + chosenWord);
@@ -192,13 +196,13 @@ const disableAllKeys = () => {
 
 const navigateToEndScreen = () => {
     disableAllKeys();
-    localStorage.setItem('score', score); // Save score to local storage
-    window.location.href = 'end.html'; // Navigate to end screen
+    localStorage.setItem('score', score); 
+    window.location.href = 'end.html'; 
 };
 
 function startGame() {
-    gameOver = false; // Reset game over flag
-    const difficulty = localStorage.getItem('difficulty'); // Get difficulty from local storage
+    gameOver = false; 
+    const difficulty = localStorage.getItem('difficulty'); 
     const wordList = wordLists[difficulty];
     chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
     hiddenWord = Array(chosenWord.length).fill('_').join('');
@@ -210,7 +214,7 @@ function startGame() {
     displayHangman(attempts);
     messageElem.innerText = '';
     hangmanContainerElem.style.backgroundColor = 'white';
-    displayScore(score); // Initialize score display
+    displayScore(score); 
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
