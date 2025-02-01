@@ -1,11 +1,21 @@
+/* General Styles */
 body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #f7ff00, #db36a4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
+/* Canvas Background */
 canvas {
     position: absolute;
     top: 0;
@@ -15,137 +25,108 @@ canvas {
     z-index: -1;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    position: relative;
-    z-index: 1;
-}
-
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.description {
-    font-size: 18px;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-    color: #555;
-}
-
+/* Glass Morphism Effect for Setup Frame */
 #setup-frame {
     width: 90%;
     max-width: 500px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2); /* Add shadows */
-    margin: 20px 0;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
     z-index: 1;
 }
 
-label {
-    font-size: 16px;
-    margin-right: 10px;
-    color: #333;
-}
-
-select {
-    font-size: 16px;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+/* Title Styling */
+h1 {
+    font-size: 2.5rem;
+    color: dark grey;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
 }
 
+/* Description Styling */
+.description {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Difficulty Selector Styling */
+select {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+}
+
+/* Button Styling */
 button {
-    background-color: #4CAF50;
+    background: linear-gradient(45deg, #f7ff00, #db36a4);
     border: none;
     color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 25px;
     cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 button i {
     margin-right: 10px;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
-button#main-page-button {
-    background-color: #007bff; /* Blue background */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-}
-
-button#main-page-button i {
-    margin-right: 10px;
-}
-
-button#main-page-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-
+/* Game Frame Styling */
 #game-frame {
     width: 95%;
-    max-width: 550px; /* Increased max-width for portrait orientation */
+    max-width: 550px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2); /* Add shadows */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
 }
 
+/* Score Container */
 #score-container {
     margin: 10px;
     font-size: 20px;
 }
 
+/* Hangman Frame */
 #hangman-frame {
-    width: calc(100% - 20px); /* Full width with margin */
+    width: calc(100% - 20px);
     border: 2px solid #333;
     padding: 10px;
-    margin: 10px 0; /* Center with margin */
+    margin: 10px 0;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hangman ASCII Art */
 #hangman-container {
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for ASCII art */
-    text-align: left; /* Align content to the left */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    transition: background-color 0.3s;
 }
 
+/* Word Container */
 #word-container {
     font-size: 24px;
     margin: 20px;
@@ -153,9 +134,10 @@ button#main-page-button:hover {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadows */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Keyboard Container */
 #keyboard-container {
     margin: 20px;
     display: flex;
@@ -166,7 +148,7 @@ button#main-page-button:hover {
 .keyboard-row {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* Prevent wrapping of keys */
+    flex-wrap: nowrap;
     margin: 5px 0;
 }
 
@@ -176,7 +158,7 @@ button#main-page-button:hover {
     margin: 5px;
     font-size: 18px;
     cursor: pointer;
-    background-color: #007bff; /* Blue keyboard */
+    background-color: #007bff;
     color: white;
     border: 1px solid #999;
     border-radius: 5px;
@@ -192,71 +174,129 @@ button#main-page-button:hover {
     cursor: not-allowed;
 }
 
+/* Message Styling */
 #message {
     margin-top: 20px;
     font-size: 18px;
     color: red;
 }
 
+/* End Frame Styling */
 #end-frame {
     width: 90%;
     max-width: 500px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2); /* Add shadows */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
     z-index: 1;
 }
 
-#score-container, #message-container, #button-container {
-    margin-bottom: 20px;
+/* Footer Styling */
+footer {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
 }
 
-@media (max-width: 600px) {
-    #setup-frame, #game-frame, #end-frame {
+/* Animation for Setup Frame */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Adjust canvas size for mobile */
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Make the setup frame full width on mobile */
+    #setup-frame {
+        width: 95%;
+        max-width: none;
+        padding: 20px;
+        margin: 10px;
+    }
+
+    /* Adjust title font size for mobile */
+    h1 {
+        font-size: 2rem;
+    }
+
+    /* Adjust description font size for mobile */
+    .description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Make the difficulty selector full width on mobile */
+    select {
         width: 100%;
         max-width: none;
-        margin: 10px 0;
-        padding: 15px;
+        font-size: 0.9rem;
     }
 
-    .description {
-        font-size: 16px;
-        padding: 8px;
-    }
-
-    select {
-        font-size: 14px;
-        padding: 4px;
-    }
-
+    /* Adjust button size for mobile */
     button {
-        padding: 8px 15px;
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust game frame for mobile */
+    #game-frame {
+        width: 95%;
+        max-width: none;
+        padding: 10px;
+    }
+
+    /* Adjust hangman drawing size for mobile */
+    #hangman-container {
         font-size: 14px;
     }
 
-    #score-container, #hangman-frame, #word-container, #keyboard-container, #message {
-        font-size: 16px;
+    /* Adjust word container font size for mobile */
+    #word-container {
+        font-size: 1.2rem;
+        margin: 10px;
+        padding: 5px;
+    }
+
+    /* Adjust keyboard layout for mobile */
+    .keyboard-row {
+        flex-wrap: wrap;
     }
 
     .key {
-        font-size: 16px;
-        padding: 8px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin: 3px;
     }
 
-    .keyboard-row {
-        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    /* Adjust message font size for mobile */
+    #message {
+        font-size: 1rem;
+        margin-top: 10px;
     }
 
-    footer {
-        width: 100%;
-        padding: 10px 0;
-        background-color: #333;
-        color: white;
-        text-align: center;
-        position: absolute;
-        bottom: 0;
+    /* Adjust end frame for mobile */
+    #end-frame {
+        width: 95%;
+        max-width: none;
+        padding: 20px;
     }
-    
 }
