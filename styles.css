@@ -72,7 +72,7 @@ select {
 
 /* Button Styling */
 button {
-    background: linear-gradient(45deg, #f7ff00, #db36a4);
+    background-color: green;
     border: none;
     color: white;
     padding: 12px 24px;
@@ -149,12 +149,13 @@ button i {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 10px; /* Add padding to prevent clipping */
 }
 
 .keyboard-row {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: nowrap; /* Ensure no wrapping occurs */
     margin: 5px 0;
 }
 
@@ -172,7 +173,6 @@ button i {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-
 .key:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -185,7 +185,6 @@ button i {
 .key.incorrect {
     background-color: #FF5252; /* Red for incorrect guesses */
 }
-
 
 .key.disabled {
     background-color: #bbb; /* Gray for disabled keys */
@@ -243,176 +242,22 @@ button i {
         padding: 5px;
     }
 
-     /* Adjust keyboard layout for mobile */
-     .keyboard-row {
-        flex-wrap: wrap;
-    }
-
-    .key {
-        padding: 8px 12px;
-        font-size: 16px;
-        margin: 3px;
-    }
-
-    /* Adjust message font size for mobile */
-    #message {
-        font-size: 1rem;
-        margin-top: 10px;
-    }
-}
-
-
-/* End Frame Styling */
-#end-frame {
-    width: 90%;
-    max-width: 500px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
-    z-index: 1;
-}
-
-/* End Message Styling */
-#end-message {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-/* Score Container Styling */
-#score-container {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
-    color: #fff;
-}
-
-/* Button Container Styling */
-#button-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between buttons */
-}
-
-/* Button Styling */
-#restart-button, #main-page-button {
-    background: linear-gradient(45deg, #f7ff00, #db36a4);
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-#restart-button:hover, #main-page-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-#restart-button i, #main-page-button i {
-    margin-right: 10px;
-}
-
-/* Animation for Fade-In */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    /* Adjust canvas size for mobile */
-    canvas {
-        width: 100%;
-        height: 100%;
-    }
-
-    /* Make the setup frame full width on mobile */
-    #setup-frame {
-        width: 95%;
-        max-width: none;
-        padding: 20px;
-        margin: 10px;
-    }
-
-    /* Adjust title font size for mobile */
-    h1 {
-        font-size: 2rem;
-    }
-
-    /* Adjust description font size for mobile */
-    .description {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    /* Make the difficulty selector full width on mobile */
-    select {
-        width: 100%;
-        max-width: none;
-        font-size: 0.9rem;
-    }
-
-    /* Adjust button size for mobile */
-    button {
-        width: 100%;
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-
-    /* Adjust game frame for mobile */
-    #game-frame {
-        width: 95%;
-        max-width: none;
-        padding: 10px;
-    }
-
-    /* Adjust hangman drawing size for mobile */
-    #hangman-container {
-        font-size: 14px;
-    }
-
-    /* Adjust word container font size for mobile */
-    #word-container {
-        font-size: 1.2rem;
-        margin: 10px;
-        padding: 5px;
-    }
-
-    /* Adjust keyboard layout for mobile */
+    /* Ensure keyboard keys stay in the same rows */
     .keyboard-row {
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Ensure no wrapping occurs */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
     }
 
     .key {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-        margin: 3px;
+        padding: 4px 8px; /* Smaller padding */
+        font-size: 12px; /* Smaller font size */
+        margin: 2px;
+        flex: none; /* Prevent keys from stretching */
     }
 
     /* Adjust message font size for mobile */
     #message {
         font-size: 1rem;
         margin-top: 10px;
-    }
-
-    /* Adjust end frame for mobile */
-    #end-frame {
-        width: 95%;
-        max-width: none;
-        padding: 20px;
     }
 }

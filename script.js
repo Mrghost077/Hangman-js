@@ -6,7 +6,7 @@ async function loadWordLists() {
     startGame(); 
 }
 
-document.addEventListener('DOMContentLoaded', loadWordLists);;
+document.addEventListener('DOMContentLoaded', loadWordLists);
 
 let chosenWord = '';
 let hiddenWord = '';
@@ -212,6 +212,7 @@ const navigateToEndScreen = () => {
 
 function startGame() {
     gameOver = false; 
+    score = 0; // Reset score at the beginning
     const difficulty = localStorage.getItem('difficulty'); 
     const wordList = wordLists[difficulty];
     chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
@@ -224,7 +225,7 @@ function startGame() {
     displayHangman(attempts);
     messageElem.innerText = '';
     hangmanContainerElem.style.backgroundColor = 'white';
-    displayScore(score); 
+    displayScore(score); // Update score display
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
