@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="background-canvas"></canvas> <!-- Canvas for background effects -->
+    <canvas id="background-canvas"></canvas> 
 
     <div id="game-frame">
         <div id="score-container">
@@ -25,14 +25,14 @@
     </div>
 
     <script src="script.js"></script>
-    <script src="canvas-effects.js"></script> <!-- Added script for canvas effects -->
+    <script src="canvas-effects.js"></script> 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const difficulty = localStorage.getItem('difficulty');
             if (!difficulty) {
-                window.location.href = 'setup.html'; // Redirect to setup page if difficulty is not set
+                window.location.href = 'setup.html'; 
             } else {
-                startGame(); // Start the game if difficulty is set
+                startGame(); 
             }
         });
     </script>

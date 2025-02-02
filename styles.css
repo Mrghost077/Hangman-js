@@ -1,4 +1,4 @@
-/* General Styles */
+
 body, html {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body, html {
     z-index: 1;
 }
 
-/* Canvas Background */
+
 canvas {
     position: absolute;
     top: 0;
@@ -25,7 +25,7 @@ canvas {
     z-index: -1;
 }
 
-/* Glass Morphism Effect for Setup Frame */
+
 #setup-frame {
     width: 90%;
     max-width: 500px;
@@ -40,15 +40,15 @@ canvas {
     z-index: 1;
 }
 
-/* Title Styling */
+
 h1 {
     font-size: 2.5rem;
-    color: #34495E; /* Charcoal gray */
+    color: #34495E; 
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Description Styling */
+
 .description {
     font-size: 1rem;
     color: #fff;
@@ -56,7 +56,7 @@ h1 {
     line-height: 1.6;
 }
 
-/* Difficulty Selector Styling */
+
 select {
     font-size: 1rem;
     padding: 10px;
@@ -70,7 +70,7 @@ select {
     cursor: pointer;
 }
 
-/* Button Styling */
+
 button {
     background-color: green;
     border: none;
@@ -92,7 +92,7 @@ button i {
     margin-right: 10px;
 }
 
-/* Game Frame Styling */
+
 #game-frame {
     width: 95%;
     max-width: 550px;
@@ -107,13 +107,13 @@ button i {
     margin: 20px 0;
 }
 
-/* Score Container */
+
 #score-container {
     margin: 10px;
     font-size: 20px;
 }
 
-/* Hangman Frame */
+
 #hangman-frame {
     width: calc(100% - 20px);
     border: 2px solid #333;
@@ -124,12 +124,12 @@ button i {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Hangman ASCII Art */
+
 #hangman-container {
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     transition: background-color 0.3s;
-    font-weight: bold; /* Make Hangman Art bold */
+    font-weight: bold; 
 }
 
 /* Word Container */
@@ -150,13 +150,13 @@ button i {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10px; /* Add padding to prevent clipping */
+    padding: 0 10px; 
 }
 
 .keyboard-row {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap; /* Ensure no wrapping occurs */
+    flex-wrap: nowrap; 
     margin: 5px 0;
 }
 
@@ -180,15 +180,15 @@ button i {
 }
 
 .key.correct {
-    background-color: #4CAF50; /* Green for correct guesses */
+    background-color: #4CAF50; 
 }
 
 .key.incorrect {
-    background-color: #FF5252; /* Red for incorrect guesses */
+    background-color: #FF5252; 
 }
 
 .key.disabled {
-    background-color: #bbb; /* Gray for disabled keys */
+    background-color: #bbb; 
     cursor: not-allowed;
 }
 
@@ -223,22 +223,22 @@ button i {
     }
 }
 
-/* Mobile Responsive Styles */
+
 @media (max-width: 768px) {
-    /* Adjust game frame for mobile */
+    
     #game-frame {
         width: 100%;
         max-width: none;
         padding: 15px;
     }
 
-    /* Adjust hangman frame for mobile */
+   
     #hangman-frame {
-        width: calc(100% - 40px); /* Smaller width with margin */
+        width: calc(100% - 40px); 
         margin: 10px auto;
     }
 
-    /* Adjust hangman drawing size for mobile */
+    
     #hangman-container {
         font-size: 14px;
     }
@@ -249,20 +249,20 @@ button i {
         padding: 5px;
     }
 
-    /* Ensure keyboard keys stay in the same rows */
+   
     .keyboard-row {
-        flex-wrap: nowrap; /* Ensure no wrapping occurs */
-        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
     }
 
     .key {
-        padding: 8px 12px; /* Smaller padding */
-        font-size: 18px; /* Smaller font size */
+        padding: 8px 12px; 
+        font-size: 18px; 
         margin: 2px;
-        flex: none; /* Prevent keys from stretching */
+        flex: none; 
     }
 
-    /* Adjust message font size for mobile */
+    
     #message {
         font-size: 1rem;
         margin-top: 10px;

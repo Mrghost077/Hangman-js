@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <canvas id="background-canvas"></canvas> <!-- Canvas for background effects -->
+    <canvas id="background-canvas"></canvas> 
 
     <div id="end-frame">
-        <h1 id="end-message"></h1> <!-- Dynamic message (You Win! / Game Over) -->
-        <h2 id="extra-message"></h2> <!-- Additional message (Sorry, you ran out of moves) -->
+        <h1 id="end-message"></h1> 
+        <h2 id="extra-message"></h2> 
         <div id="score-container">
             <strong>Final Score:</strong> <span id="final-score"></span>
         </div>
@@ -22,28 +22,28 @@
         </div>
     </div>
 
-    <script src="canvas-effects.js"></script> <!-- Canvas background effects -->
+    <script src="canvas-effects.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const message = localStorage.getItem('endMessage');
         const score = localStorage.getItem('score');
-        const endStatus = localStorage.getItem('endStatus'); // 'win' or 'lose'
-        const correctWord = localStorage.getItem('hiddenWord'); // The correct word
+        const endStatus = localStorage.getItem('endStatus'); 
+        const correctWord = localStorage.getItem('hiddenWord'); 
 
         // Set the end message and style based on the result
         const endMessageElem = document.getElementById('end-message');
         const extraMessageElem = document.getElementById('extra-message');
         
-        endMessageElem.innerText = endStatus === 'win' ? 'You Win!' : 'Game Over'; // Display win/lose message
+        endMessageElem.innerText = endStatus === 'win' ? 'You Win!' : 'Game Over'; 
         extraMessageElem.innerText = endStatus === 'lose' ? `Sorry, you ran out of moves. The word was: ${correctWord}` : ''; // Display additional message for lose
 
-        endMessageElem.style.color = endStatus === 'win' ? '#4CAF50' : '#FF5252'; // Green for win, red for lose
+        endMessageElem.style.color = endStatus === 'win' ? '#4CAF50' : '#FF5252'; 
 
-        // Display the final score
+        
         document.getElementById('final-score').innerText = score;
 
-        // Confetti animation for winning
+        
         if (endStatus === 'win') {
             confetti({
                 particleCount: 100,
@@ -52,13 +52,13 @@
             });
         }
 
-        // Button event listeners
+        
         document.getElementById('restart-button').addEventListener('click', function() {
-            window.location.href = 'game.html'; // Redirect to game page
+            window.location.href = 'game.html'; 
         });
 
         document.getElementById('main-page-button').addEventListener('click', function() {
-            window.location.href = 'index.html'; // Redirect to main page
+            window.location.href = 'index.html'; 
         });
     });
     </script>

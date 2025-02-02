@@ -152,8 +152,8 @@ const guessLetter = (letter) => {
                 hiddenWord = hiddenWord.substring(0, i) + letter + hiddenWord.substring(i + 1);
             }
         }
-        score += 10; // Increase score for correct guess
-        // Add 'correct' class to the key
+        score += 10; 
+        
         const key = Array.from(keyboardContainerElem.querySelectorAll('.key')).find(key => key.innerText === letter);
         if (key) {
             key.classList.add('correct');
@@ -164,37 +164,37 @@ const guessLetter = (letter) => {
             hangmanContainerElem.style.backgroundColor = 'white';
         }, 500);
         attempts++;
-        score -= 5; // Decrease score for wrong guess
-        // Add 'incorrect' class to the key
+        score -= 5; 
+        
         const key = Array.from(keyboardContainerElem.querySelectorAll('.key')).find(key => key.innerText === letter);
         if (key) {
             key.classList.add('incorrect');
         }
     }
 
-    // Ensure the score doesn't go negative
+    
     if (score < 0) {
         score = 0;
     }
 
     guessedLetters.push(letter);
-    disableKey(letter); // Disable the key after it's guessed
+    disableKey(letter); 
     displayWord(hiddenWord);
     displayHangman(attempts);
-    displayScore(score); // Update score display
+    displayScore(score); 
 
-    // Check if the game is won or lost
+    
     if (!hiddenWord.includes('_')) {
         gameOver = true;
         localStorage.setItem('endMessage', `Congratulations! You guessed the word: ${chosenWord}`);
         localStorage.setItem('endStatus', 'win');
-        localStorage.setItem('hiddenWord', chosenWord); // Store the correct word
+        localStorage.setItem('hiddenWord', chosenWord); 
         navigateToEndScreen();
     } else if (attempts >= maxAttempts) {
         gameOver = true;
         localStorage.setItem('endMessage', `Sorry, you ran out of attempts. The word was: ${chosenWord}`);
         localStorage.setItem('endStatus', 'lose');
-        localStorage.setItem('hiddenWord', chosenWord); // Store the correct word
+        localStorage.setItem('hiddenWord', chosenWord); 
         navigateToEndScreen();
     }
 };
@@ -214,7 +214,7 @@ const navigateToEndScreen = () => {
 
 function startGame() {
     gameOver = false; 
-    score = 0; // Reset score at the beginning
+    score = 0; 
     const difficulty = localStorage.getItem('difficulty'); 
     const wordList = wordLists[difficulty];
     chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
@@ -227,7 +227,7 @@ function startGame() {
     displayHangman(attempts);
     messageElem.innerText = '';
     hangmanContainerElem.style.backgroundColor = 'white';
-    displayScore(score); // Update score display
+    displayScore(score); 
 }
 
 document.addEventListener('DOMContentLoaded', startGame);
