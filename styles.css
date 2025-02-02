@@ -129,6 +129,7 @@ button i {
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     transition: background-color 0.3s;
+    font-weight: bold; /* Make Hangman Art bold */
 }
 
 /* Word Container */
@@ -229,6 +230,12 @@ button i {
         width: 100%;
         max-width: none;
         padding: 15px;
+    }
+
+    /* Adjust hangman frame for mobile */
+    #hangman-frame {
+        width: calc(100% - 40px); /* Smaller width with margin */
+        margin: 10px auto;
     }
 
     /* Adjust hangman drawing size for mobile */
