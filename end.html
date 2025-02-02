@@ -43,7 +43,7 @@
         // Display the final score
         document.getElementById('final-score').innerText = score;
 
-        // Trigger confetti if the player wins
+        // Confetti animation for winning
         if (endStatus === 'win') {
             confetti({
                 particleCount: 100,
@@ -52,13 +52,13 @@
             });
         }
 
-        // Add event listeners for buttons
+        // Button event listeners
         document.getElementById('restart-button').addEventListener('click', function() {
-            window.location.href = 'game.html'; // Navigate to game page
+            window.location.href = 'game.html'; // Redirect to game page
         });
 
         document.getElementById('main-page-button').addEventListener('click', function() {
-            window.location.href = 'setup.html'; // Navigate back to setup page
+            window.location.href = 'index.html'; // Redirect to main page
         });
     });
     </script>

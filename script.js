@@ -188,11 +188,13 @@ const guessLetter = (letter) => {
         gameOver = true;
         localStorage.setItem('endMessage', `Congratulations! You guessed the word: ${chosenWord}`);
         localStorage.setItem('endStatus', 'win');
+        localStorage.setItem('hiddenWord', chosenWord); // Store the correct word
         navigateToEndScreen();
     } else if (attempts >= maxAttempts) {
         gameOver = true;
         localStorage.setItem('endMessage', `Sorry, you ran out of attempts. The word was: ${chosenWord}`);
         localStorage.setItem('endStatus', 'lose');
+        localStorage.setItem('hiddenWord', chosenWord); // Store the correct word
         navigateToEndScreen();
     }
 };
