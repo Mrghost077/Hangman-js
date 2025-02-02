@@ -11,10 +11,10 @@
     <canvas id="background-canvas"></canvas> <!-- Canvas for background effects -->
 
     <div id="end-frame">
-        <h1>Game Over</h1>
-        <div id="message-container"></div>
+        <h1 id="end-message"></h1> <!-- Dynamic message (You Win! / Game Over) -->
+        <h2 id="extra-message"></h2> <!-- Additional message (Sorry, you ran out of moves) -->
         <div id="score-container">
-            <strong>Score:</strong> <span id="final-score"></span>
+            <strong>Final Score:</strong> <span id="final-score"></span>
         </div>
         <div id="button-container">
             <button id="restart-button"><i class="fas fa-redo-alt"></i> Restart Game</button>
@@ -22,27 +22,45 @@
         </div>
     </div>
 
-    <script src="canvas-effects.js"></script> <!-- Added script for canvas effects -->
+    <script src="canvas-effects.js"></script> <!-- Canvas background effects -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const message = localStorage.getItem('endMessage');
-            const score = localStorage.getItem('score');
-            document.getElementById('message-container').innerText = message;
-            document.getElementById('final-score').innerText = score;
+    document.addEventListener('DOMContentLoaded', function() {
+        const message = localStorage.getItem('endMessage');
+        const score = localStorage.getItem('score');
+        const endStatus = localStorage.getItem('endStatus'); // 'win' or 'lose'
+        const correctWord = localStorage.getItem('hiddenWord'); // The correct word
 
-            document.getElementById('restart-button').addEventListener('click', function() {
-                window.location.href = 'game.html'; // Navigate to game page
-            });
+        // Set the end message and style based on the result
+        const endMessageElem = document.getElementById('end-message');
+        const extraMessageElem = document.getElementById('extra-message');
+        
+        endMessageElem.innerText = endStatus === 'win' ? 'You Win!' : 'Game Over'; // Display win/lose message
+        extraMessageElem.innerText = endStatus === 'lose' ? `Sorry, you ran out of moves. The word was: ${correctWord}` : ''; // Display additional message for lose
 
-            document.getElementById('main-page-button').addEventListener('click', function() {
-                window.location.href = 'setup.html'; // Navigate back to setup page
+        endMessageElem.style.color = endStatus === 'win' ? '#4CAF50' : '#FF5252'; // Green for win, red for lose
+
+        // Display the final score
+        document.getElementById('final-score').innerText = score;
+
+        // Trigger confetti if the player wins
+        if (endStatus === 'win') {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
             });
+        }
+
+        // Add event listeners for buttons
+        document.getElementById('restart-button').addEventListener('click', function() {
+            window.location.href = 'game.html'; // Navigate to game page
         });
+
+        document.getElementById('main-page-button').addEventListener('click', function() {
+            window.location.href = 'setup.html'; // Navigate back to setup page
+        });
+    });
     </script>
 </body>
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 Hangman Game. Created with ❤️ by Safwan</p>
-</footer>
-
 </html>

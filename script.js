@@ -140,7 +140,7 @@ const disableKey = (letter) => {
 };
 
 const guessLetter = (letter) => {
-    if (gameOver || guessedLetters.includes(letter)) return; 
+    if (gameOver || guessedLetters.includes(letter)) return;
 
     if (chosenWord.includes(letter)) {
         hangmanContainerElem.style.backgroundColor = 'green';
@@ -152,36 +152,46 @@ const guessLetter = (letter) => {
                 hiddenWord = hiddenWord.substring(0, i) + letter + hiddenWord.substring(i + 1);
             }
         }
-        score += 10; 
+        score += 10; // Increase score for correct guess
+        // Add 'correct' class to the key
+        const key = Array.from(keyboardContainerElem.querySelectorAll('.key')).find(key => key.innerText === letter);
+        if (key) {
+            key.classList.add('correct');
+        }
     } else {
         hangmanContainerElem.style.backgroundColor = 'red';
         setTimeout(() => {
             hangmanContainerElem.style.backgroundColor = 'white';
         }, 500);
         attempts++;
-        score -= 5; 
+        score -= 5; // Decrease score for wrong guess
+        // Add 'incorrect' class to the key
+        const key = Array.from(keyboardContainerElem.querySelectorAll('.key')).find(key => key.innerText === letter);
+        if (key) {
+            key.classList.add('incorrect');
+        }
     }
 
-    
+    // Ensure the score doesn't go negative
     if (score < 0) {
         score = 0;
     }
 
     guessedLetters.push(letter);
-    disableKey(letter);
+    disableKey(letter); // Disable the key after it's guessed
     displayWord(hiddenWord);
     displayHangman(attempts);
-    displayScore(score); 
+    displayScore(score); // Update score display
 
-    
+    // Check if the game is won or lost
     if (!hiddenWord.includes('_')) {
         gameOver = true;
-        localStorage.setItem('endMessage', 'Congratulations! You guessed the word: ' + chosenWord);
+        localStorage.setItem('endMessage', `Congratulations! You guessed the word: ${chosenWord}`);
         localStorage.setItem('endStatus', 'win');
         navigateToEndScreen();
     } else if (attempts >= maxAttempts) {
         gameOver = true;
-        localStorage.setItem('endMessage', 'Sorry, you ran out of attempts. The word was: ' + chosenWord);
+        localStorage.setItem('endMessage', `Sorry, you ran out of attempts. The word was: ${chosenWord}`);
         localStorage.setItem('endStatus', 'lose');
         navigateToEndScreen();
     }
