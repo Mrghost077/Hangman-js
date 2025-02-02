@@ -256,8 +256,8 @@ button i {
     }
 
     .key {
-        padding: 4px 8px; /* Smaller padding */
-        font-size: 12px; /* Smaller font size */
+        padding: 8px 12px; /* Smaller padding */
+        font-size: 18px; /* Smaller font size */
         margin: 2px;
         flex: none; /* Prevent keys from stretching */
     }
