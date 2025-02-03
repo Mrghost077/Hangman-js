@@ -14,7 +14,10 @@ This is a simple guessing game built using HTML, CSS & Javascript. The player ha
 - Graphical user interface 
 - Visual Feedbacks
 
-## 📌 How to Play
+## How to play online (Live Demo)
+- [Play Hangman Now](https://hangman-sn-v1.netlify.app/) 
+
+## 📌 How to Play Locally
 
 1. Run the script in a Browser
 2. The game will randomly select a word and display its hidden representation (\_ \_ \_ \_).
@@ -39,7 +42,7 @@ This is a simple guessing game built using HTML, CSS & Javascript. The player ha
    ```sh
    cd hangman
    ```
-3. Open the setup.html file
+3. Open the index.html file
    ```
 
 ## 🤝 Contributing
